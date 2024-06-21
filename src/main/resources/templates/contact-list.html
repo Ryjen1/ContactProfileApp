@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .action-links a {
+            margin-right: 10px;
+        }
+        .action-links a:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Contact List</h1>
+<div style="text-align: center;">
+    <a th:href="@{/contacts/new}">Create New Contact</a>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${contacts}">
+        <td th:text="${contact.name}">Name</td>
+        <td th:text="${contact.email}">Email</td>
+        <td th:text="${contact.phone}">Phone</td>
+        <td class="action-links">
+            <a th:href="@{/contacts/edit/{id}(id=${contact.id})}">Edit</a>
+            <a th:href="@{/contacts/delete/{id}(id=${contact.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
