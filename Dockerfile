@@ -18,6 +18,6 @@ RUN mvn clean package -DskipTests
 # Second stage: Run the application using OpenJDK 21
 FROM openjdk:21-jdk
 WORKDIR /app
-COPY --from=build /app/target/ContactProfileApp-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /target/ContactProfileApp-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
